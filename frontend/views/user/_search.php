@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 //use yii\jui\DatePicker;
 use kartik\date\DatePicker;
 use kartik\daterange\DateRangePicker;
@@ -28,7 +29,7 @@ use kartik\field\FieldRange;
             </div>
         </div>
         <div class="filter_button fl_l">
-            <a href="" class="button add_sotr">Добавить сотрудника</a>
+            <a href="<?= Url::toRoute(['/user/add']) ?>" class="button add_sotr">Добавить сотрудника</a>
         </div>
         <div class="filter_button fl_r">
             <?= Html::submitButton('Искать', ['class' => 'button search']) ?>

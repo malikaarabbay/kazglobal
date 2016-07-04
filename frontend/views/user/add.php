@@ -32,46 +32,16 @@ $this->title = 'Личный кабинет';
             </aside>
             <div class="content_body">
                 <div class="title">
-                    <h1>Структура организации</h1>
+                    <h1>Добавление сотрудника</h1>
+
                 </div>
 
                 <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
                 <?php if($user->status_id == 3) {?>
                 <?php } else { ?>
-                    <?= $this->render('_search', ['model' => $searchModel]) ?>
-                    <?= GridView::widget([
-                        'dataProvider' => $dataProvider,
-                        'tableOptions' => [
-                            'class' => 'operacy',
-                            'border' => '1'
-                        ],
-                        'columns' => [
-//                            ['class' => 'yii\grid\SerialColumn'],
-                            'login',
-                            'firstname',
-                            'lastname',
-                            'secondname',
-                            [
-                                'attribute' => 'status_id',
-                                'class' => 'yii\grid\DataColumn',
-                                'label' => 'Статус',
-                                'value' => function ($data) {
-                                    return ($data->statusSpec) ? $data->statusSpec->title : 'Без статуса';
-                                },
-//                                    'filter' => ArrayHelper::map(Status::find()->all(), 'id', 'title')
-                            ],
-                            [
-                                'attribute' => 'parent_id',
-                                'class' => 'yii\grid\DataColumn',
-                                'label' => 'Куратор',
-                                'value' => function ($data) {
-                                    return ($data->parent) ? $data->parent->login : 'Без куратора';
-                                },
-//                                    'filter' => ArrayHelper::map(\common\models\User::find()->where(['id' => 'parent_id'])->all(), 'id', 'login')
-                            ],
-                        ],
-                    ]); ?>
+                    <?= AddUserWidget::widget() ?>
                 <?php } ?>
+
             </div>
         </div>
     </div>

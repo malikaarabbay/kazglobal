@@ -19,7 +19,7 @@ use yii\helpers\Url;
 class UserController extends \yii\web\Controller
 {
 
-    public $layout = 'default';
+//    public $layout = 'default';
     
     public function beforeAction($action)
     {
@@ -76,7 +76,8 @@ class UserController extends \yii\web\Controller
 
     public function actionHistory()
     {
-
+        $this->layout = 'default';
+        
         if (Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -104,6 +105,50 @@ class UserController extends \yii\web\Controller
         ]);
     }
 
+    public function actionAdd()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $user = User::findOne(['id' => Yii::$app->user->id]);
+
+        return $this->render('add', [
+            'user' => $user,
+        ]);
+    }
+
+    public function actionSettings()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $user = User::findOne(['id' => Yii::$app->user->id]);
+        
+        $passwordModel = new ChangePasswordForm();
+        $profileModel = new Profile();
+
+
+        if ($profileModel->load(Yii::$app->request->post())) {
+            if ($profileModel->changeProfile()) {
+                Yii::$app->getSession()->setFlash('success', 'Данные успешно изменены!');
+                return $this->redirect(['user/index']);
+            }
+            else {
+                Yii::$app->getSession()->setFlash('danger', 'Возникла ошибка!');
+            }
+        }
+        $profileModel->setAttributes($user->attributes);
+        
+        return $this->render('settings', [
+            'user' => $user,
+            'profileModel' => $profileModel,
+            'passwordModel' => $passwordModel,
+        ]);
+    }
+    
     public function actionChangePassword()
     {
         $user = User::findOne(['id' => Yii::$app->user->id]);
