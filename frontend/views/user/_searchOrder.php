@@ -42,7 +42,7 @@ $id = $user->company_id;
                 'pluginOptions' => [
 //                    'todayHighlight' => 'true',
 //                    'startDate' => 'today',
-                    'format' => 'yyyy-mm-dd',
+                    'format' => 'dd.mm.yyyy',
                     'autoclose' => true,
                 ]
             ])?>
