@@ -51,13 +51,28 @@ jQuery(document).ready(function ($) {
             settings: {
                 arrows: true,
                 centerMode: true,
+                slidesToShow: 3,
+            }
+        },
+        {
+              breakpoint: 768,
+            	settings: {
+                arrows: true,
+                centerMode: true,
+                slidesToShow: 2,
+            }
+
+        },
+         {
+              breakpoint: 460,
+            	settings: {
+                arrows: true,
+                centerMode: true,
                 slidesToShow: 1,
             }
 
         }
         ]
-
-         
     });
 });
 

@@ -263,3 +263,11 @@
     cursor: pointer;
     transition: all 0.4s ease-in;
 }
+@media screen and (max-width: 460px){
+.slick-next-partners.slick-arrow {
+    right: -20px;
+}
+.slick-prev-partners.slick-arrow {
+    left: -20px;
+}
+}
