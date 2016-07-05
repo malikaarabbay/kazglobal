@@ -39,7 +39,14 @@ class Order extends \yii\db\ActiveRecord
     const DELIVERY_PRICE = 500;
     const DELIVERY_WITHOUT = 1;
     const DELIVERY_WITH = 2;
+    const SCENARIO_ORDER = 'order';
 
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_ORDER => ['is_approved'],
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -68,8 +75,8 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_phone', 'user_email', 'delivery_id','payment_id','user_name','user_address','created'], 'required'],
-            [['user_id', 'manager_id', 'delivery_id','payment_id', 'status_id', 'paid', 'updated', 'company_id', 'user_login'], 'integer'],
+            [['user_phone', 'user_email', 'delivery_id','payment_id','user_address','created'], 'required'],
+            [['user_id', 'manager_id', 'delivery_id','payment_id', 'status_id', 'paid', 'updated', 'company_id', 'user_login', 'is_approved'], 'integer'],
             [['created'], 'safe'],
             [['delivery_price', 'total_price'], 'number'],
             [['admin_comment'], 'string'],
@@ -88,6 +95,7 @@ class Order extends \yii\db\ActiveRecord
             'user_id' => Yii::t('order', 'User ID'),
             'secret_key' => Yii::t('order', 'Secret Key'),
             'delivery_id' => Yii::t('order', 'Delivery ID'),
+            'is_approved' => Yii::t('order', 'Is Approved'),
             'delivery_price' => Yii::t('order', 'Delivery Price'),
             'total_price' => Yii::t('order', 'Total Price'),
             'status_id' => Yii::t('order', 'Status ID'),
@@ -112,6 +120,18 @@ class Order extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+//
+//    public function changeApprove()
+//    {
+//        if ($this->validate()) {
+//            $order = Order::find()->where(['user_id' => Yii::$app->user->id])->one();
+//            $order->is_approved = 1;
+//            $order = $order->save();
+//            return $order;
+//        }
+//        return null;
+//    }
+
     public function getOrderItems()
     {
         return $this->hasMany(OrderItem::className(), ['order_id' => 'id']);
@@ -121,7 +141,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(),['id' => 'user_id']);
     }
-
+    
 
     public function sendEmail()
     {

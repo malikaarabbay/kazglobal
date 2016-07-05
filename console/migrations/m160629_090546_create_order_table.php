@@ -21,6 +21,7 @@ class m160629_090546_create_order_table extends Migration
             'service_id' => Schema::TYPE_INTEGER,
             'company_id' => Schema::TYPE_INTEGER,
             'manager_id' => Schema::TYPE_INTEGER,
+            'is_approved' => Schema::TYPE_INTEGER. ' DEFAULT 0',
             'secret_key' => Schema::TYPE_STRING,
             'delivery_id' => Schema::TYPE_INTEGER,
             'payment_id' => Schema::TYPE_INTEGER,

@@ -754,10 +754,10 @@ select.input_filtr {
     position: relative;
 }
 .yes{
-    background-image: url(../img/yes.png);
+    background-image: url('../img/yes.png');
 }
 .no{
-    background-image: url(../img/no.png);
+    background-image: url('../img/no.png');
 }
 .operacy.zaiavki tr td:last-child{
     background-color: #008cba;
@@ -781,10 +781,10 @@ select.input_filtr {
     cursor: pointer;
 }
 .no:hover{
-    background-image: url(../img/no_hover.png)
+    background-image: url('../img/no_hover.png')
 }
 .yes:hover{
-    background-image: url(../img/yes_hover.png)
+    background-image: url('../img/yes_hover.png')
 }
 .operacy.zaiavki tr td label:hover:after {
     content: attr(data-title);

@@ -18,7 +18,7 @@ class OrderSearch extends Order
     public function rules()
     {
         return [
-            [['id', 'user_id', 'delivery_id', 'status_id', 'paid', 'created', 'updated', 'service_id', 'user_login'], 'integer'],
+            [['id', 'user_id', 'delivery_id', 'status_id', 'paid', 'created', 'updated', 'service_id', 'user_login', 'is_approved'], 'integer'],
             [['secret_key', 'user_firstname', 'user_lastname', 'user_secondname', 'user_email', 'user_address', 'delivery_address', 'user_phone', 'user_comment', 'ip_address', 'discount', 'admin_comment'], 'safe'],
             [['delivery_price', 'total_price'], 'number'],
         ];
@@ -71,6 +71,7 @@ class OrderSearch extends Order
             'created' => $this->created,
             'updated' => $this->updated,
             'service_id' => $this->service_id,
+            'is_approved' => $this->is_approved,
         ]);
 
         $query->andFilterWhere(['like', 'secret_key', $this->secret_key])
@@ -87,7 +88,8 @@ class OrderSearch extends Order
             ->andFilterWhere(['like', 'discount', $this->discount])
             ->andFilterWhere(['like', 'admin_comment', $this->admin_comment])
             ->andFilterWhere(['like', 'created', $this->created])
-            ->andFilterWhere(['like', 'service_id', $this->service_id]);
+            ->andFilterWhere(['like', 'service_id', $this->service_id])
+            ->andFilterWhere(['like', 'is_approved', $this->is_approved]);
 
         return $dataProvider;
     }

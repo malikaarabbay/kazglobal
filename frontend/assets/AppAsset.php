@@ -22,7 +22,7 @@ class AppAsset extends AssetBundle
         'css/normalize.css',
         'css/style.css',
         'css/slide.css',
-        'css/slide.css',
+//        'css/slide.css',
     ];
     public $js = [
         'http://code.jquery.com/jquery-2.1.4.js',

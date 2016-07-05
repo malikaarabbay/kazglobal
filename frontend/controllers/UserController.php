@@ -15,12 +15,13 @@ use vova07\fileapi\actions\UploadAction as FileAPIUpload;
 use frontend\models\Profile;
 use common\models\search\UserSearch;
 use yii\helpers\Url;
+use yii\web\NotFoundHttpException;
 
 class UserController extends \yii\web\Controller
 {
 
 //    public $layout = 'default';
-    
+
     public function beforeAction($action)
     {
         if (parent::beforeAction($action)) {
@@ -77,7 +78,7 @@ class UserController extends \yii\web\Controller
     public function actionHistory()
     {
         $this->layout = 'default';
-        
+      
         if (Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -115,6 +116,25 @@ class UserController extends \yii\web\Controller
 
         return $this->render('add', [
             'user' => $user,
+        ]);
+    }
+
+    public function actionOrders()
+    {
+
+        $this->layout = 'default';
+
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $user = User::findOne(['id' => Yii::$app->user->id]);
+        $searchModel = new OrderFormSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+
+        return $this->render('orders', [
+            'user' => $user,
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 
@@ -167,6 +187,36 @@ class UserController extends \yii\web\Controller
         return $this->redirect('index');
 
     }
+
+    public function actionApprove($id)
+    {
+        $model = $this->findModel($id);
+        $model->scenario = Order::SCENARIO_ORDER;
+        $model->is_approved = 1;
+        $model->save();
+
+        return $this->redirect(['user/orders']);
+    }
+
+    public function actionCancel($id)
+    {
+        $model = $this->findModel($id);
+        $model->scenario = Order::SCENARIO_ORDER;
+        $model->is_approved = 0;
+        $model->save();
+
+        return $this->redirect(['user/orders']);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Order::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
     public function actions()
     {
         return [
