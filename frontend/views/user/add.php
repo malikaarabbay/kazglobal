@@ -27,7 +27,7 @@ $this->title = 'Личный кабинет';
                     <li class="side_bar_list_item"><a href="<?= Url::toRoute(['/user/history']) ?>" class="side_bar_list_item_link history">История операции</a></li>
                     <li class="side_bar_list_item"><a href="" class="side_bar_list_item_link project">Участие в проектах</a></li>
                     <li class="side_bar_list_item"><a href="<?= Url::toRoute(['/user/settings']) ?>" class="side_bar_list_item_link settings">Настройки</a></li>
-                    <li class="side_bar_list_item"><a href="" class="side_bar_list_item_link list">Участие в проектах</a></li>
+                    <li class="side_bar_list_item"><a href="<?= Url::toRoute(['/user/orders']) ?>" class="side_bar_list_item_link list">Список заявок</a></li>
                 </ul>
             </aside>
             <div class="content_body">

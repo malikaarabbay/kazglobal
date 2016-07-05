@@ -38,6 +38,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => Yii::$app->params['orderService']
             ],
+            [
+                'attribute' => 'is_approved',
+                'class' => 'yii\grid\DataColumn',
+                'label' => 'Одобрение',
+                'value' => function ($data) {
+                    return ($data->is_approved) ? Yii::$app->params['approved'][$data->is_approved] : 'Не одобрено';
+                },
+                'filter' => Yii::$app->params['approved']
+            ],
 //            'id',
 //            'user_name',
 //            'user_email',

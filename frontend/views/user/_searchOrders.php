@@ -14,7 +14,7 @@ $id = $user->company_id;
 ?>
 <div class="filtr">
     <?php $form = ActiveForm::begin([
-        'action' => ['history'],
+        'action' => ['orders'],
         'method' => 'get',
     ]); ?>
         <div class="filter_input_conteiner">

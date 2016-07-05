@@ -33,17 +33,17 @@ $this->title = 'Личный кабинет';
             </aside>
             <div class="content_body">
                 <div class="title">
-                    <h1>История операции</h1>
+                    <h1>Список заявок</h1>
                 </div>
 
                 <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
                 <?php if($user->status_id == 3) {?>
                 <?php } else { ?>
-                    <?= $this->render('_searchOrder', ['model' => $searchModel]) ?>
+                    <?= $this->render('_searchOrders', ['model' => $searchModel]) ?>
                     <?= GridView::widget([
                         'dataProvider' => $dataProvider,
                         'tableOptions' => [
-                            'class' => 'operacy',
+                            'class' => 'operacy zaiavki',
                             'border' => '1'
                         ],
                         'columns' => [
@@ -103,6 +103,33 @@ $this->title = 'Личный кабинет';
                                     return ($data->service_id) ? Yii::$app->params['orderService'][$data->service_id] : '';
                                 },
                                 'filter' => Yii::$app->params['orderService']
+                            ],
+                            [
+                                'class' => 'yii\grid\ActionColumn',
+                                'header' => 'Действия',
+                                'template' => '{approve} {cancel}',
+                                'buttons' => [
+                                    'approve' => function ($url) {
+                                        return Html::a(
+                                            '<label for="yes"class="yes"  data-title="Одобрить" ></label><input id="yes" type="hidden">',
+                                            $url,
+                                            [
+                                                'title' => 'Одобрить',
+                                                'data-pjax' => '0',
+                                            ]
+                                        );
+                                    },
+                                    'cancel' => function ($url) {
+                                        return Html::a(
+                                            '<label for="no" data-title="Отклонить"class="no"></label><input id="no" type="hidden">',
+                                            $url,
+                                            [
+                                                'title' => 'Отклонить',
+                                                'data-pjax' => '0',
+                                            ]
+                                        );
+                                    },
+                                ],
                             ],
                         ],
                     ]); ?>
