@@ -17,7 +17,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 $this->title = 'Личный кабинет';
 ?>
-<div class="container">
+<div class="containers">
     <div class="content">
         <div class="cr">
             <aside>

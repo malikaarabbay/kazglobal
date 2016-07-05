@@ -459,6 +459,8 @@ display: bloc;
     text-align: left;
     text-indent: 5px;
     border-top-color: white;
+    width: 100%;
+    font-size: 14px;
 }
 .operacy tr {
     line-height: 40px;
@@ -489,7 +491,7 @@ display: bloc;
     border: 1px solid #636363;
     line-height: 34px;
     text-indent: 10px;
-    width: 100%;
+    width: 99%;
     color: #989898;
 }
 .filter_input_conteiner {
@@ -690,7 +692,11 @@ select.input_filtr {
     width: 48%;
     margin-bottom: 25px;
 }
-.nastroiki_body {
+.summary {
+    font-family: "Roman";
+    margin-bottom: 10px;
+}
+.nastroiki_body,#profile-form {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -968,6 +974,10 @@ select.input_filtr {
 .mob_ul li a:hover {
     text-decoration: underline;
 }
+.containers {
+    overflow: hidden;
+}
+
 @media screen and (max-width: 1100px){
     .top_header, .lang_m  {
     display: block;

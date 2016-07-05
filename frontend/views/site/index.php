@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use frontend\widgets\NewsWidget;
 ?>
-<div class="container">
+<div class="containers">
     <div class="big_img"></div>
     <div class="cr">
         <div class="center_button">
