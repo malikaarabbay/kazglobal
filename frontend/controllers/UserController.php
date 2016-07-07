@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Order;
 use common\models\UserFormSearch;
 use common\models\search\OrderFormSearch;
+use common\models\search\OrderBalanceSearch;
 use Faker\Provider\Company;
 use frontend\models\PasswordChangeForm;
 use frontend\models\ProfileSettings;
@@ -95,14 +96,19 @@ class UserController extends \yii\web\Controller
 
     public function actionBalance()
     {
-
+        $this->layout = 'default';
+        
         if (Yii::$app->user->isGuest) {
             return $this->goHome();
         }
         $user = User::findOne(['id' => Yii::$app->user->id]);
+        $searchModel = new OrderBalanceSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
         return $this->render('balance', [
             'user' => $user,
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 
