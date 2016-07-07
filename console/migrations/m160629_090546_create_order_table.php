@@ -49,10 +49,10 @@ class m160629_090546_create_order_table extends Migration
         ], $tableOptions);
 
         $this->batchInsert('{{%order}}',
-            ['user_id', 'user_login', 'user_firstname', 'user_lastname', 'user_secondname', 'company_id', 'service_id', 'created', 'updated'],
+            ['user_id', 'user_login', 'user_firstname', 'user_lastname', 'user_secondname', 'total_price', 'company_id', 'service_id', 'created', 'updated'],
             [
-                [3, '100002', 'dina', 'ivanova', 'ivanovna', 1, 2, time(), time()],
-                [4, '100003', 'ruslan', 'ivanov', 'ivanovich', 1, 1, time(), time()],
+                [3, '100002', 'dina', 'ivanova', 'ivanovna', '3000', 1, 2, time(), time()],
+                [4, '100003', 'ruslan', 'ivanov', 'ivanovich', '5000', 1, 1, time(), time()],
             ]
         );
     }

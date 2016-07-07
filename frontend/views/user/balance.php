@@ -13,6 +13,7 @@ use common\models\Company;
 use common\models\Status;
 use kartik\widgets\DatePicker;
 use yii\widgets\Pjax;
+use common\models\User;
 
 /* @var $this yii\web\View */
 $this->title = 'Личный кабинет';
@@ -45,7 +46,74 @@ $this->title = 'Личный кабинет';
                 <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
                 <?php if($user->status_id == 3) {?>
                 <?php } else { ?>
-
+                    <?= $this->render('_searchBalance', ['model' => $searchModel]) ?>
+                    <?= GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'tableOptions' => [
+                            'class' => 'operacy',
+                            'border' => '1'
+                        ],
+                        'columns' => [
+//                            ['class' => 'yii\grid\SerialColumn'],
+                            [
+                                'attribute' => 'user_id',
+                                'class' => 'yii\grid\DataColumn',
+                                'label' => 'Логин ID',
+                                'value' => function ($data) {
+                                    return ($data->user) ? $data->user->login : ' ';
+                                },
+                                'filter' => ArrayHelper::map(User::find()->all(), 'id', 'login')
+                            ],
+                            [
+                                'attribute' => 'created',
+                                'label' => 'Дата',
+                                'format' =>  ['date', 'dd.MM.yyyy'],
+//                                'options' => ['width' => '200']
+                            ],
+                            [
+                                'attribute' => 'created',
+                                'label' => 'Время',
+                                'format' =>  ['time', 'HH:mm:ss'],
+                            ],
+                            [
+                                'attribute' => 'user_id',
+                                'class' => 'yii\grid\DataColumn',
+                                'label' => 'Имя',
+                                'value' => function ($data) {
+                                    return ($data->user) ? $data->user->firstname : ' ';
+                                },
+                                'filter' => ArrayHelper::map(User::find()->all(), 'id', 'firstname')
+                            ],
+                            [
+                                'attribute' => 'user_id',
+                                'class' => 'yii\grid\DataColumn',
+                                'label' => 'Фамилия',
+                                'value' => function ($data) {
+                                    return ($data->user) ? $data->user->lastname : ' ';
+                                },
+                                'filter' => ArrayHelper::map(User::find()->all(), 'id', 'lastname')
+                            ],
+                            [
+                                'attribute' => 'user_id',
+                                'class' => 'yii\grid\DataColumn',
+                                'label' => 'Отчество',
+                                'value' => function ($data) {
+                                    return ($data->user) ? $data->user->secondname : ' ';
+                                },
+                                'filter' => ArrayHelper::map(User::find()->all(), 'id', 'secondname')
+                            ],
+                            [
+                                'attribute' => 'service_id',
+                                'class' => 'yii\grid\DataColumn',
+                                'label' => 'Услуга',
+                                'value' => function ($data) {
+                                    return ($data->service_id) ? Yii::$app->params['orderService'][$data->service_id] : '';
+                                },
+                                'filter' => Yii::$app->params['orderService']
+                            ],
+                            'total_price',
+                        ],
+                    ]); ?>
                 <?php } ?>
             </div>
         </div>

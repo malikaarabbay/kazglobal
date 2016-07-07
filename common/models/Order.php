@@ -97,7 +97,7 @@ class Order extends \yii\db\ActiveRecord
             'delivery_id' => Yii::t('order', 'Delivery ID'),
             'is_approved' => Yii::t('order', 'Is Approved'),
             'delivery_price' => Yii::t('order', 'Delivery Price'),
-            'total_price' => Yii::t('order', 'Total Price'),
+            'total_price' => 'Сумма (KZT)',
             'status_id' => Yii::t('order', 'Status ID'),
             'paid' => Yii::t('order', 'Paid'),
             'user_login' => Yii::t('order', 'User Login'),
@@ -142,6 +142,10 @@ class Order extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(),['id' => 'user_id']);
     }
     
+    public function getCompany()
+    {
+        return $this->hasOne(Company::className(),['id' => 'company_id']);
+    }
 
     public function sendEmail()
     {

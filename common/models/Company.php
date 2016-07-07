@@ -24,6 +24,16 @@ class Company extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    const SCENARIO_BALANCE = 'balance';
+
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_BALANCE => ['balance'],
+        ];
+    }
+    
     public static function tableName()
     {
         return '{{%company}}';
