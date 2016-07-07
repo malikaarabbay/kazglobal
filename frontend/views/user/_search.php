@@ -15,16 +15,16 @@ use kartik\field\FieldRange;
     ]); ?>
         <div class="filter_input_conteiner">
 
-            <div class="filtr_fio_seocnd">
+            <div class="filtr_fio_seocnd structure">
                 <?= $form->field($model, 'login', ['inputOptions' => ['class' => 'input_filtr']])->textInput()->input('login', ['placeholder' => 'Поиск ID'])->label(false); ?>
             </div>
-            <div class="filtr_fio_seocnd">
+            <div class="filtr_fio_seocnd structure">
                 <?= $form->field($model, 'lastname', ['inputOptions' => ['class' => 'input_filtr']])->textInput()->input('lastname', ['placeholder' => 'Фамилия'])->label(false); ?>
             </div>
-            <div class="filtr_fio_seocnd">
+            <div class="filtr_fio_seocnd structure">
                 <?= $form->field($model, 'firstname', ['inputOptions' => ['class' => 'input_filtr']])->textInput()->input('firstname', ['placeholder' => 'Имя'])->label(false); ?>
             </div>
-            <div class="filtr_fio_seocnd">
+            <div class="filtr_fio_seocnd structure">
                 <?= $form->field($model, 'secondname', ['inputOptions' => ['class' => 'input_filtr']])->textInput()->input('secondname', ['placeholder' => 'Отчество'])->label(false); ?>
             </div>
         </div>
