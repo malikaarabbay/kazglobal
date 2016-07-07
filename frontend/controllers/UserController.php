@@ -140,6 +140,7 @@ class UserController extends \yii\web\Controller
 
     public function actionSettings()
     {
+        $this->layout = 'default';
 
         if (Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -154,7 +155,7 @@ class UserController extends \yii\web\Controller
         if ($profileModel->load(Yii::$app->request->post())) {
             if ($profileModel->changeProfile()) {
                 Yii::$app->getSession()->setFlash('success', 'Данные успешно изменены!');
-                return $this->redirect(['user/index']);
+                return $this->redirect(['user/settings']);
             }
             else {
                 Yii::$app->getSession()->setFlash('danger', 'Возникла ошибка!');
@@ -194,6 +195,13 @@ class UserController extends \yii\web\Controller
         $model->scenario = Order::SCENARIO_ORDER;
         $model->is_approved = 1;
         $model->save();
+
+        $company = \common\models\Company::findOne(['id' => $model->company_id]);
+        $company->scenario = \common\models\Company::SCENARIO_BALANCE;
+        $companyBalance = $company->balance - $model->total_price;
+        $company->balance = $companyBalance;
+        $company->save();
+
 
         return $this->redirect(['user/orders']);
     }

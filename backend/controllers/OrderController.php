@@ -74,7 +74,7 @@ class OrderController extends Controller
         $model = new Order();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->created = Yii::$app->formatter->asTimestamp($model->created);
+//            $model->created = Yii::$app->formatter->asTimestamp($model->created);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -93,7 +93,7 @@ class OrderController extends Controller
     {
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->created = Yii::$app->formatter->asTimestamp($model->created);
+//            $model->created = Yii::$app->formatter->asTimestamp($model->created);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $model->created = Yii::$app->formatter->asDate($model->created, 'dd.MM.yyyy');

@@ -142,6 +142,10 @@ class Order extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(),['id' => 'user_id']);
     }
     
+    public function getCompany()
+    {
+        return $this->hasOne(Company::className(),['id' => 'company_id']);
+    }
 
     public function sendEmail()
     {

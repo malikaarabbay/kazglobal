@@ -35,8 +35,9 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['password'], 'string'],
-            [['role', 'parent_id', 'status_id', 'company_id', 'login'], 'integer'],
+            [['password', 'pass_surname', 'pass_name', 'pass_state', 'organ_issue', 'skype', 'pass_type', 'pass_national', 'pass_authority'], 'string'],
+            [['birthday', 'pass_issue', 'pass_validity', 'date_issue', 'date_validity'], 'safe'],
+            [['role', 'parent_id', 'status_id', 'company_id', 'login', 'pass_number', 'pass_id'], 'integer'],
             [['activated', 'sex'], 'boolean'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
@@ -109,7 +110,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'social' => ['firstname', 'lastname', 'email', 'sex', 'photo', 'birthday', 'fb_id', 'vk_id', 'gg_id', 'li_id', 'mr_id', 'tw_id', 'ok_id', 'activated'],
-            'default' => ['parent_id', 'company_id', 'status_id', 'login', 'firstname', 'lastname', 'secondname', 'email', 'sex', 'photo', 'birthday', 'activated', 'phone', 'password', 'city_id', 'about'],
+            'default' => ['parent_id', 'company_id', 'status_id', 'login', 'firstname', 'lastname', 'secondname', 'email', 'sex', 'photo', 'birthday', 'activated', 'phone', 'password', 'city_id', 'about', 'pass_surname', 'pass_name', 'pass_state', 'organ_issue', 'skype', 'pass_type', 'pass_national', 'pass_authority'],
         ];
     }
     

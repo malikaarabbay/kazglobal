@@ -100,6 +100,7 @@ class UserController extends Controller
             }
 
             if ($user = $model->saveProfile() && $model->sendEmail(Yii::$app->params['adminEmail'])) {
+//                $model->date_issue = Yii::$app->formatter->asTimestamp($model->date_issue);
                 Yii::$app->getSession()->setFlash('success', 'Сотрудник успешно добавлено! Уводомление отправлено на email.');
                 return $this->redirect(['user/index']);
             }
