@@ -1,11 +1,11 @@
 <?php
-
+use yii\helpers\Url;
 ?>
 <footer class="footer">
     <div class="cr">
         <a href="/" class="logo"><img src="/img/logo_f.png" alt=""></a>
         <ul class="map_site footer_map">
-            <li><a href="">Новости</a>
+            <li><a href="<?= Url::toRoute(['/news/index']) ?>">Новости</a>
                 <a href="">Топ -5 туров</a>
                 <a href="">Наши клиенты</a>
             </li>

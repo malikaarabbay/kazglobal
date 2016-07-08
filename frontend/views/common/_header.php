@@ -37,7 +37,7 @@ use common\models\Text;
         <div class="cr">
             <a href="/" class="logo"><img src="/img/logo.png" alt=""></a>
             <ul class="map_site">
-                <li><a href="">Новости</a>
+                <li><a href="<?= Url::toRoute(['/news/index']) ?>">Новости</a>
                     <a href="">Топ -5 туров</a>
                     <a href="">Наши клиенты</a>
                 </li>

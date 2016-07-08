@@ -66,7 +66,7 @@ $this->title = 'Личный кабинет';
                             [
                                 'attribute' => 'created',
                                 'label' => 'Время',
-                                'format' =>  ['time', 'HH:mm:ss'],
+                                'format' =>  ['time', 'HH:mm'],
                             ],
                             [
                                 'attribute' => 'user_id',

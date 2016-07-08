@@ -10,38 +10,46 @@ use yii\web\NotFoundHttpException;
 
 class NewsController extends \yii\web\Controller
 {
+
     public function actionIndex()
     {
-        $newsQuery = News::find()->where(['is_published' => '1'])->orderBy('created DESC');
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $newsQuery,
-            'pagination' => [
-                'pageSize' => 6,
-            ],
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
+//        $this->layout = 'default';
+        
+        return $this->render('index');
     }
 
-    public function actionView($slug){
-
-        $model = $this->findNews($slug);
-
-        return $this->render('view', [
-            'model' => $model,
-        ]);
-    }
-
-    protected function findNews($slug)
-    {
-        if (($model = News::find()->where(['slug' => $slug])->one()) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
+//    public function actionIndex()
+//    {
+//        $newsQuery = News::find()->where(['is_published' => '1'])->orderBy('created DESC');
+//
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => $newsQuery,
+//            'pagination' => [
+//                'pageSize' => 6,
+//            ],
+//        ]);
+//
+//        return $this->render('index', [
+//            'dataProvider' => $dataProvider,
+//        ]);
+//    }
+//
+//    public function actionView($slug){
+//
+//        $model = $this->findNews($slug);
+//
+//        return $this->render('view', [
+//            'model' => $model,
+//        ]);
+//    }
+//
+//    protected function findNews($slug)
+//    {
+//        if (($model = News::find()->where(['slug' => $slug])->one()) !== null) {
+//            return $model;
+//        } else {
+//            throw new NotFoundHttpException('The requested page does not exist.');
+//        }
+//    }
 
 }
