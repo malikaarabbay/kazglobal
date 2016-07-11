@@ -47,7 +47,7 @@ class OrderFormSearch extends Order
     {
         $user = Yii::$app->user->identity;
         $id = $user->company_id;
-        $query = Order::find()->where(['company_id' => $id])->andWhere(['NOT IN', 'user_id', [Yii::$app->user->id]]);
+        $query = Order::find()->where(['company_id' => $id, 'is_approved' => 0])->andWhere(['NOT IN', 'user_id', [Yii::$app->user->id]]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

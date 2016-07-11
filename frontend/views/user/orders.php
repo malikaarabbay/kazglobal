@@ -104,15 +104,15 @@ $this->title = 'Личный кабинет';
                                 },
                                 'filter' => Yii::$app->params['orderService']
                             ],
-                            [
-                                'attribute' => 'is_approved',
-                                'class' => 'yii\grid\DataColumn',
-                                'label' => 'Одобрения',
-                                'value' => function ($data) {
-                                    return ($data->is_approved) ? Yii::$app->params['approved'][$data->is_approved] : '';
-                                },
-                                'filter' => Yii::$app->params['approved']
-                            ],
+//                            [
+//                                'attribute' => 'is_approved',
+//                                'class' => 'yii\grid\DataColumn',
+//                                'label' => 'Одобрения',
+//                                'value' => function ($data) {
+//                                    return ($data->is_approved) ? Yii::$app->params['approved'][$data->is_approved] : '';
+//                                },
+//                                'filter' => Yii::$app->params['approved']
+//                            ],
                             [
                                 'class' => 'yii\grid\ActionColumn',
                                 'header' => 'Действия',
