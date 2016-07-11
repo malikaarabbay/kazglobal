@@ -53,13 +53,13 @@ class SignupForm extends Model
     public $pass_authority;
     public $pass_id;
 
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['birthday', 'pass_issue', 'pass_validity', 'date_issue', 'date_validity'], 'safe'],
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
@@ -71,13 +71,13 @@ class SignupForm extends Model
             ['phone', 'string'],
             [['city_id', 'login', 'parent_id', 'company_id', 'status_id'], 'integer'],
 
-            [['password','email', 'firstname', 'lastname', 'secondname', 'parent_id', 'status_id', 'passwordRepeat', 'number_id', 'date_issue', 'date_validity', 'pass_issue', 'pass_validity', 'birthday', 'organ_issue', 'iin'], 'required'],
+            [['password','email', 'firstname', 'lastname', 'secondname', 'passwordRepeat'], 'required'],
 
             [['password'], 'string', 'min' => 6],
             ['passwordRepeat', 'compare', 'compareAttribute' => 'password'],
 
             ['password', 'string', 'min' => 6],
-            [['phone', 'city_id', 'login', 'parent_id', 'company_id', 'status_id'], 'safe'],
+            [['phone', 'city_id', 'login', 'parent_id', 'company_id', 'status_id', 'organ_issue', 'skype', 'pass_surname', 'pass_name', 'pass_state', 'pass_type', 'pass_national', 'pass_authority', 'number_id', 'iin', 'pass_number', 'pass_id', 'birthday', 'pass_issue', 'pass_validity', 'date_issue', 'date_validity'], 'safe'],
             [['vk_id', 'fb_id', 'mr_id', 'gg_id', 'ok_id', 'li_id', 'tw_id'], 'safe'],
         ];
     }
@@ -86,6 +86,7 @@ class SignupForm extends Model
     {
         if ($this->validate()) {
             $user = new User();
+//            $user->scenario = 'default';
             $user->firstname = $this->firstname;
             $user->lastname = $this->lastname;
             $user->secondname = $this->secondname;
@@ -138,7 +139,6 @@ class SignupForm extends Model
             'city_id' => 'Город:',
             'password' => 'Пароль:',
             'passwordRepeat' => 'Повтор пароля:',
-            'birthday' => 'Date of birth',
         ];
     }
 
@@ -146,7 +146,7 @@ class SignupForm extends Model
     {
         return [
             'social' => ['firstname', 'lastname', 'email', 'sex', 'photo', 'birthday', 'activated'],
-            'default' => ['firstname', 'lastname', 'secondname', 'login', 'parent_id', 'company_id', 'status_id', 'email', 'sex', 'photo', 'birthday', 'activated', 'phone', 'password', 'city_id', 'about', 'agreed', 'passwordRepeat'],
+            'default' => ['firstname', 'lastname', 'secondname', 'login', 'parent_id', 'company_id', 'status_id', 'email', 'sex', 'photo', 'birthday', 'activated', 'phone', 'password', 'city_id', 'about', 'agreed', 'passwordRepeat', 'skype'],
         ];
     }
 

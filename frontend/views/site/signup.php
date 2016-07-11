@@ -16,21 +16,29 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="enter_reg_container">
                 <div class="title"><h1><?= Html::encode($this->title) ?></h1></div>
 
-                    <?php $form = ActiveForm::begin(['id' => 'form-signup', 'action' => Url::toRoute('/site/signup')]); ?>
+                <?php $form = ActiveForm::begin(['id' => 'form-signup', 'options' => ['enctype' => 'multipart/form-data']]); ?>
                 <div class="enter_form_container">
                     <div class="enter_form">
 
                         <p>Данные по удостоверению личности</p>
+                        
+                            <?= $form->field($model, 'login')->hiddenInput(['value' => $userLogin ])->label(false) ?>
 
-                        <div class="input_enter_container">
-                            <?= $form->field($model, 'lastname', ['inputOptions' => ['class' => 'input_registar']])->textInput()->input('lastname',  ['placeholder' => 'Фамилия'])->label(false); ?>
-                        </div>
-                        <div class="input_enter_container">
-                            <?= $form->field($model, 'firstname', ['inputOptions' => ['class' => 'input_registar']])->textInput()->input('firstname',  ['placeholder' => 'Имя'])->label(false); ?>
-                        </div>
-                        <div class="input_enter_container">
-                            <?= $form->field($model, 'secondname', ['inputOptions' => ['class' => 'input_registar']])->textInput()->input('secondname',  ['placeholder' => 'Отчество'])->label(false); ?>
-                        </div>
+                            <?= $form->field($model, 'password')->hiddenInput(['value' => $password ])->label(false) ?>
+
+                            <?= $form->field($model, 'passwordRepeat')->hiddenInput(['value' => $password ])->label(false) ?>
+
+                            <?= $form->field($model, 'status')->hiddenInput(['value' => '10' ])->label(false) ?>
+
+                            <div class="input_enter_container">
+                                <?= $form->field($model, 'lastname', ['inputOptions' => ['class' => 'input_registar']])->textInput()->input('lastname',  ['placeholder' => 'Фамилия'])->label(false); ?>
+                            </div>
+                            <div class="input_enter_container">
+                                <?= $form->field($model, 'firstname', ['inputOptions' => ['class' => 'input_registar']])->textInput()->input('firstname',  ['placeholder' => 'Имя'])->label(false); ?>
+                            </div>
+                            <div class="input_enter_container">
+                                <?= $form->field($model, 'secondname', ['inputOptions' => ['class' => 'input_registar']])->textInput()->input('secondname',  ['placeholder' => 'Отчество'])->label(false); ?>
+                            </div>
                         <div class="input_enter_container">
                             <?= $form->field($model, 'number_id', ['inputOptions' => ['class' => 'input_registar']])->textInput()->input('number_id',  ['placeholder' => '№ удостоверения личности'])->label(false); ?>
                         </div>
@@ -130,7 +138,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="registr_button">
                     <?= Html::submitButton('Зарегистрироваться', ['class' => 'button enter_link']) ?>
                 </div>
-                    <?php ActiveForm::end(); ?>
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
