@@ -39,4 +39,5 @@ return array(
 	'Firstname' => 'Имя',
 	'Lastname' => 'Фамилия',
 	'Secondname' => 'Отчество',
+	'Birthday' => 'Date of birth',
 );
