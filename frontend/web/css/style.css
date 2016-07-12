@@ -812,7 +812,7 @@ select.input_filtr {
 
 /************* datePicker style *****************/
 
-.input-daterange{
+.input-group.input-daterange {
     width: 30%;
     border: none;
     margin: 0;
@@ -1009,6 +1009,25 @@ select.input_filtr {
 .enter_registr_container a:hover {
     text-decoration: none;
 }
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    padding: 0;
+    margin: 0;
+    line-height: 30px;
+    border: 1px solid #b1b1b1;
+    /* text-indent: 15px; */
+    width: 90%;
+}
+.col-xs-12 {
+    width: 50%;
+    padding: 0;
+}
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
 @media screen and (max-width: 1100px){
     .top_header, .lang_m  {
     display: block;
@@ -1023,10 +1042,21 @@ select.input_filtr {
     .map_site, .menu_top,.top_line .cr{
         display: none;
     }
+    .content_body {
+    width: 72.5%;
 }
+.side_bar_list {
+    width: 23%;
+}
+}
+
 @media screen and (max-width: 960px){
 .soc_seti.mobile span {
     display: none;
+}
+
+.input_registar, .input-group {
+    width: 95%;
 }
 .side_bar_list {
     width: 100%;
@@ -1042,6 +1072,9 @@ select.input_filtr {
 .filtr_fio_seocnd ,.filtr_fio_seocnd.structure,.filtr_fio,.input-daterange{
     width: 48%;
     margin-bottom: 15px;
+}
+.col-xs-12 {
+    width: 100%;
 }
 .side_bar_list_item {
     width: 45%;

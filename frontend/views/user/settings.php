@@ -140,6 +140,7 @@ $this->title = 'Личный кабинет';
                             <div class="input_enter_container">
                                 <?= $form->field($profileModel, 'pass_id', ['inputOptions' => ['class' => 'input_registar']])->textInput()->input('pass_id',  ['placeholder' => 'ID №'])->label(false); ?>
                             </div>
+                            
                         </div>
                         <?= Html::submitButton('Сохранить изменения', ['class' => 'button ', 'name' => 'login-button']) ?>
 
