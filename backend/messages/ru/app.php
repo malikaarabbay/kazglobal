@@ -159,6 +159,7 @@ return array(
     'Comment' => 'Комментарий',
 
     'Texts' => 'Тексты',
+    'Text' => 'Текст',
     'Create Text' => 'Добавить Текст',
 
     'Review' => 'Отзыв',

@@ -15,8 +15,13 @@ use common\models\Text;
                 <a href="<?= Url::toRoute(['/site/login']) ?>" class="enter">Войти</a>
                 <a href="<?= Url::toRoute(['/site/signup']) ?>" class="registr">Регистрация</a>
                 <?php } else { ?>
-                    <a href="<?= Url::toRoute(['/user/index']) ?>" class="enter"><?= Yii::$app->user->identity->firstname ?> <?= Yii::$app->user->identity->lastname ?></a>
-                    <a href="<?= Url::toRoute(['/site/logout']) ?>" class="registr">Выйти</a>
+                    <?php if(Yii::$app->user->identity->status_id == 0) {?>
+                        <a href="<?= Url::toRoute(['/user/cabinet']) ?>" class="enter"><?= Yii::$app->user->identity->firstname ?> <?= Yii::$app->user->identity->lastname ?> (ID номер: <?= Yii::$app->user->identity->login ?>)</a>
+                        <a href="<?= Url::toRoute(['/site/logout']) ?>" class="registr">Выйти</a>
+                    <?php } else { ?>
+                        <a href="<?= Url::toRoute(['/user/index']) ?>" class="enter"><?= Yii::$app->user->identity->firstname ?> <?= Yii::$app->user->identity->lastname ?> (ID номер: <?= Yii::$app->user->identity->login ?>)</a>
+                        <a href="<?= Url::toRoute(['/site/logout']) ?>" class="registr">Выйти</a>
+                    <?php } ?>
                 <?php } ?>
             </div>
             <div class="soc_seti">

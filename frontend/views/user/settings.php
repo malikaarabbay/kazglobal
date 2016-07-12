@@ -22,12 +22,17 @@ $this->title = 'Личный кабинет';
         <div class="cr">
             <aside>
                 <ul class="side_bar_list">
+                    <?php if($user->status_id == 0) {?>
+                        <li class="side_bar_list_item"><a href="<?= Url::toRoute(['/user/cabinet']) ?>" class="side_bar_list_item_link structure">Личный кабинет</a></li>
+                        <li class="side_bar_list_item"><a href="<?= Url::toRoute(['/user/settings']) ?>" class="side_bar_list_item_link settings">Настройки</a></li>
+                    <?php } else { ?>
                     <li class="side_bar_list_item"><a href="<?= Url::toRoute(['/user/index']) ?>" class="side_bar_list_item_link structure">Структура организации</a></li>
                     <li class="side_bar_list_item"><a href="<?= Url::toRoute(['/user/balance']) ?>" class="side_bar_list_item_link balance">Баланс</a></li>
                     <li class="side_bar_list_item"><a href="<?= Url::toRoute(['/user/history']) ?>" class="side_bar_list_item_link history">История операции</a></li>
                     <li class="side_bar_list_item"><a href="" class="side_bar_list_item_link project">Участие в проектах</a></li>
                     <li class="side_bar_list_item"><a href="<?= Url::toRoute(['/user/settings']) ?>" class="side_bar_list_item_link settings">Настройки</a></li>
                     <li class="side_bar_list_item"><a href="<?= Url::toRoute(['/user/orders']) ?>" class="side_bar_list_item_link list">Список заявок</a></li>
+                    <?php } ?>
                 </ul>
             </aside>
             <div class="content_body">

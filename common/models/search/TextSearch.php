@@ -19,7 +19,7 @@ class TextSearch extends Text
     {
         return [
             [['id', 'created', 'updated', 'created_user_id', 'updated_user_id'], 'integer'],
-            [['key', 'value'], 'safe'],
+            [['key', 'value', 'text'], 'safe'],
         ];
     }
 
@@ -64,7 +64,8 @@ class TextSearch extends Text
         ]);
 
         $query->andFilterWhere(['like', 'key', $this->key])
-            ->andFilterWhere(['like', 'value', $this->value]);
+            ->andFilterWhere(['like', 'value', $this->value])
+            ->andFilterWhere(['like', 'text', $this->text]);
 
         return $dataProvider;
     }

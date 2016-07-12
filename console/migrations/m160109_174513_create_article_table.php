@@ -39,17 +39,9 @@ class m160109_174513_create_article_table extends Migration
         ], $tableOptions);
 
         $this->batchInsert('{{%article}}',
-            ['title', 'category_id', 'anounce', 'description', 'photo','created', 'updated', 'slug','is_published'],
+            ['title', 'category_id', 'description', 'photo', 'created', 'updated', 'slug', 'is_published'],
             [
-                ['Статья 1', 1, 'Анонс контента' , 'Описание контента' , 'article.jpg', time(), time(), 'article-1', 1],
-                ['Статья 2', 2, 'Анонс контента' , 'Описание контента' , 'article.jpg', time(), time(), 'article-2', 1],
-                ['Статья 3', 3, 'Анонс контента' , 'Описание контента' , 'article.jpg', time(), time(), 'article-3', 1],
-                ['Статья 4', 4, 'Анонс контента' , 'Описание контента' , 'article.jpg', time(), time(), 'article-4', 1],
-                ['Статья 5', 5, 'Анонс контента' , 'Описание контента' , 'article.jpg', time(), time(), 'article-5', 1],
-                ['Статья 6', 1, 'Анонс контента' , 'Описание контента' , 'article.jpg', time(), time(), 'article-6', 1],
-                ['Статья 7', 2, 'Анонс контента' , 'Описание контента' , 'article.jpg', time(), time(), 'article-7', 1],
-                ['Статья 8', 3, 'Анонс контента' , 'Описание контента' , 'article.jpg', time(), time(), 'article-8', 1],
-                ['Статья 9', 4, 'Анонс контента' , 'Описание контента' , 'article.jpg', time(), time(), 'article-9', 1],
+                ['О компании', 1, 'Описание контента' , 'article.jpg', time(), time(), 'o-kompanii', 1],
             ]
         );
 
