@@ -14,8 +14,4 @@ $this->registerMetaTag(['name'=> 'description', 'content' => '']);
 
 ?>
 
-    <div class="title">
-        <h1><?= $this->title ?></h1>
-    </div>
-
 <?= $this->render( '_item' )?>
