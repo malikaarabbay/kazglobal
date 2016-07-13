@@ -38,7 +38,7 @@ use yii\helpers\Url;
                         <a target="_blank" href="'.$link.'" class="news_title" title="'.$title.'">'.$title.'</a>
                         <p>'.$announce.'...</p>
                     </div>
-          </li>';
+          </li><div class="clear"></div>';
             }
             ?>
         </ul>
