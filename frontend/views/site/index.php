@@ -4,6 +4,7 @@ $this->title = 'KazGlobal';
 use yii\helpers\Html;
 use yii\helpers\Url;
 use frontend\widgets\NewsWidget;
+use tugmaks\RssFeed\RssReader;
 ?>
 <div class="containers">
     <div class="big_img"></div>
@@ -22,6 +23,7 @@ use frontend\widgets\NewsWidget;
         </p>
         <p class="compani_text">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
     </div>
+
 </div>
 
 

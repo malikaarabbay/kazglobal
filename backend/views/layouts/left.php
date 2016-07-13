@@ -28,7 +28,7 @@
 
                     ['label' => 'Пользователи', 'icon' => 'fa fa-users', 'url' => ['user/index'],],
                     ['label' => 'Компании', 'icon' => 'fa fa-building-o', 'url' => ['company/index'],],
-                    ['label' => 'Новости', 'icon' => 'fa fa-bullhorn', 'url' => ['news/index'],],
+//                    ['label' => 'Новости', 'icon' => 'fa fa-bullhorn', 'url' => ['news/index'],],
                     ['label' => 'Заявки', 'icon' => 'fa fa-pencil', 'url' => ['order/index'],],
 //                    ['label' => 'Статьи', 'icon' => 'fa fa-pencil', 'url' => ['article/index'],],
 //                    ['label' => 'Галерея', 'icon' => 'fa fa-file-photo-o', 'url' => ['gallery/index'],],

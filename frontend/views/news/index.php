@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use \yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
 use yii\widgets\ListView;
-
+use tugmaks\RssFeed\RssReader;
 /* @var $this yii\web\View */
 $this->title = 'Новости';
 
@@ -14,24 +14,21 @@ $this->registerMetaTag(['name'=> 'description', 'content' => '']);
 
 ?>
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            123
-            <?= \yii\widgets\Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
+
+    <div class="containers">
+        <div class="content">
+             <div class="cr">
+             <div class="title text-decoration">
+                     <h1><?= $this->title ?></h1>
+                 </div>
+            <?php echo RssReader::widget([
+                'channel' => 'https://www.nur.kz/rss/all.rss',
+                'pageSize' => 10,
+                'itemView' => '@frontend/views/news/_item', //To set own viewFile set 'itemView'=>'@frontend/views/site/_rss_item'. Use $model var to access item properties
+                'wrapTag' => 'div',
+                'wrapClass' => 'rss-wrap',
+            ]);
+            ?>
+             </div>
         </div>
     </div>
-</div>
-
-<div class="container">
-
-    <div class="row">
-        <?= ListView::widget([
-            'dataProvider' => $dataProvider,
-            'itemView' => '_item',
-            'layout' => "{items}\n<div class='clearfix'></div>{pager}",
-        ]) ?>
-    </div>
-</div>

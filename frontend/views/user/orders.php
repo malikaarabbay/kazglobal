@@ -38,6 +38,7 @@ $this->title = 'Личный кабинет';
 
                 <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
                 <?php if($user->status_id == 3) {?>
+                <?php } elseif($user->status_id == 0) { ?>
                 <?php } else { ?>
                     <?= $this->render('_searchOrders', ['model' => $searchModel]) ?>
                     <?= GridView::widget([
@@ -66,7 +67,7 @@ $this->title = 'Личный кабинет';
                             [
                                 'attribute' => 'created',
                                 'label' => 'Время',
-                                'format' =>  ['time', 'HH:mm:ss'],
+                                'format' =>  ['time', 'HH:mm'],
                             ],
                             [
                                 'attribute' => 'user_id',
@@ -104,15 +105,15 @@ $this->title = 'Личный кабинет';
                                 },
                                 'filter' => Yii::$app->params['orderService']
                             ],
-                            [
-                                'attribute' => 'is_approved',
-                                'class' => 'yii\grid\DataColumn',
-                                'label' => 'Одобрения',
-                                'value' => function ($data) {
-                                    return ($data->is_approved) ? Yii::$app->params['approved'][$data->is_approved] : '';
-                                },
-                                'filter' => Yii::$app->params['approved']
-                            ],
+//                            [
+//                                'attribute' => 'is_approved',
+//                                'class' => 'yii\grid\DataColumn',
+//                                'label' => 'Одобрения',
+//                                'value' => function ($data) {
+//                                    return ($data->is_approved) ? Yii::$app->params['approved'][$data->is_approved] : '';
+//                                },
+//                                'filter' => Yii::$app->params['approved']
+//                            ],
                             [
                                 'class' => 'yii\grid\ActionColumn',
                                 'header' => 'Действия',

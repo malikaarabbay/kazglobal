@@ -2,30 +2,13 @@
 use himiklab\thumbnail\EasyThumbnailImage;
 use yii\helpers\Url;
 ?>
-
-<div class="col-xs-12 col-sm-4 col-md-3">
-    <div class="thumbnail">
-        <?=
-        EasyThumbnailImage::thumbnailImg(
-            $model->imagePath,
-            400,
-            300,
-            EasyThumbnailImage::THUMBNAIL_OUTBOUND,
-            [
-                'alt' => $model->title,
-                'class' => 'img-responsive'
-            ]
-        );
-        ?>
-        <div class="caption">
-            <h3><?= $model->title ?></h3>
-            <?php $anounce = strip_tags($model->anounce, '<a>'); echo mb_substr($anounce,0, 200, 'UTF-8').' ...'; ?>
-            <p>
-                <div class="btn btn-default" ><?= Yii::$app->formatter->asDate($model->created, 'dd.MM.yyyy') ?></div>
-                <a href="<?= Url::toRoute(['/news/view', 'slug' => $model->slug]) ?>" class="btn btn-primary">Подробнее</a>
-            </p>
-        </div>
+    <div class="news-item-wrap">
+        <a target="_blank" href="<?= $model->link ?>" class="news_item__name"><?= $model->title ?></a>
+        <div class="date"><?= Yii::$app->formatter->asDate($model->pubDate, 'dd.MM.yyyy') ?></div>
+        <div class="time"><?= Yii::$app->formatter->asTime($model->pubDate, 'HH:mm') ?></div>
+        <?php $anounce = strip_tags($model->description, '<p><a>'); (strlen($anounce) > 150 ) ? $readmore = ' ...' : $readmore = ''?>
+        <div class="news-desc" style="padding-bottom: 10px"><?php $anounce = strip_tags($model->description, '<p><a>'); echo mb_substr($anounce, 0, 150, 'UTF-8').$readmore; ?></div>
     </div>
-</div>
+
 
 

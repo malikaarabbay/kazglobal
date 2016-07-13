@@ -5,6 +5,7 @@ use common\models\Feedback;
 use common\models\Product;
 use common\models\Subscribe;
 use common\models\User;
+use frontend\models\Profile;
 use Yii;
 use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -148,7 +149,19 @@ class SiteController extends Controller
 
     public function actionSignup()
     {
+        $this->layout = 'default';
+        
+        // generate login
+        $lastInsertLogin = User::find()->orderBy('id desc')->limit(1)->one();
+        $userLogin = $lastInsertLogin->login + 1;
+        // generate pass
+        $length = 10;
+        $chars = array_merge(range(0,9), range('a','z'), range('A','Z'));
+        shuffle($chars);
+        $password = implode(array_slice($chars, 0, $length));
+        
         $model = new SignupForm();
+//        $model->scenario = 'default';
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
@@ -160,6 +173,8 @@ class SiteController extends Controller
 
         return $this->render('signup', [
             'model' => $model,
+            'userLogin' => $userLogin,
+            'password' => $password
         ]);
     }
 

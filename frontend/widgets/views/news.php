@@ -12,26 +12,33 @@ use himiklab\thumbnail\EasyThumbnailImage;
     <div class="cr">
         <div class="title_news">Свежие новости KazGlobalTravel</div>
         <div class="news-list">
-            <?php foreach ($news as $newsItem) {?>
-            <div class="news_list-item">
-                <div class="news_item">
-                    <div class="news_list_img">
-                        <?php
-                        echo \himiklab\thumbnail\EasyThumbnailImage::thumbnailImg(
-                            $newsItem->imagePath, 210, 155, \himiklab\thumbnail\EasyThumbnailImage::THUMBNAIL_OUTBOUND,
-                            [
-                                'class' => ''
-                            ]
-                        );
-                        ?>
-                    </div>
-                    <a href="<?= Url::toRoute(['/news/view', 'slug' => $newsItem->slug]) ?>" class="news_item__name"><?= $newsItem->title ?></a>
-                    <div class="date">
-                        <?= Yii::$app->formatter->asDate($newsItem->created, 'dd.MM.yyyy') ?>
-                    </div>
-                </div>
-            </div>
-            <?php } ?>
+            <?php
+            $rss = new DOMDocument();
+            $rss->load('https://www.nur.kz/rss/all.rss');
+            $feed = array();
+            foreach ($rss->getElementsByTagName('item') as $node) {
+                $item = array (
+                    'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
+                    'desc' => $node->getElementsByTagName('description')->item(0)->nodeValue,
+                    'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
+                    'date' => $node->getElementsByTagName('pubDate')->item(0)->nodeValue,
+                );
+                array_push($feed, $item);
+            }
+            $limit = 12;
+            for($x=0;$x<$limit;$x++) {
+                $title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
+                $link = $feed[$x]['link'];
+                $description = $feed[$x]['desc'];
+                $date = date('d.m.Y', strtotime($feed[$x]['date']));
+                echo '<div class="news_list-item">
+                <div class="news_item"><a target="_blank" href="'.$link.'" class="news_item__name" title="'.$title.'">'.$title.'</a>';
+                echo $date.'</div>
+                </div>';
+//                echo '<p>'.$description.'</p>';
+            }
+            ?>
+
         </div>
     </div>
 </div>

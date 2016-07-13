@@ -214,3 +214,20 @@ $(function() {
   if(extensionRange.endDateText) $('[name=endDate]').val(extensionRange.endDateText);
 });
 
+$(document).ready(function () {
+    $(".menu li.min ").hover(function () { //When trigger is hovered...
+           $('.menu li >.sub_menu_container').css("height","30px");
+         $('.line_top').css("height","15px");
+    },
+	function () {
+          $('.menu li >.sub_menu_container').css("height","105px");
+           $('.menu li.min >.sub_menu_container').css("height","30px");
+        $('.line_top').css("height","83px");
+           
+            if($('.menu li.min').hasClass('active')){
+                $('.line_top').css("display","block");
+                $('.line_top').css("height","15px");
+            }
+                   
+    });
+});

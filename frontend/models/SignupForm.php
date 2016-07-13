@@ -35,6 +35,25 @@ class SignupForm extends Model
     public $gg_id;
     public $tw_id;
 
+    public $organ_issue;
+    public $skype;
+    public $number_id;
+    public $date_issue;
+    public $date_validity;
+    public $iin;
+
+    public $pass_surname;
+    public $pass_name;
+    public $pass_state;
+    public $pass_type;
+    public $pass_number;
+    public $pass_national;
+    public $pass_issue;
+    public $pass_validity;
+    public $pass_authority;
+    public $pass_id;
+
+
     /**
      * @inheritdoc
      */
@@ -52,13 +71,13 @@ class SignupForm extends Model
             ['phone', 'string'],
             [['city_id', 'login', 'parent_id', 'company_id', 'status_id'], 'integer'],
 
-            [['password','email', 'firstname', 'lastname', 'secondname', 'parent_id', 'status_id', 'passwordRepeat'], 'required'],
+            [['password','email', 'firstname', 'lastname', 'secondname', 'passwordRepeat'], 'required'],
 
             [['password'], 'string', 'min' => 6],
             ['passwordRepeat', 'compare', 'compareAttribute' => 'password'],
 
             ['password', 'string', 'min' => 6],
-            [['phone', 'city_id', 'login', 'parent_id', 'company_id', 'status_id'], 'safe'],
+            [['phone', 'city_id', 'login', 'parent_id', 'company_id', 'status_id', 'organ_issue', 'skype', 'pass_surname', 'pass_name', 'pass_state', 'pass_type', 'pass_national', 'pass_authority', 'number_id', 'iin', 'pass_number', 'pass_id', 'birthday', 'pass_issue', 'pass_validity', 'date_issue', 'date_validity'], 'safe'],
             [['vk_id', 'fb_id', 'mr_id', 'gg_id', 'ok_id', 'li_id', 'tw_id'], 'safe'],
         ];
     }
@@ -67,6 +86,7 @@ class SignupForm extends Model
     {
         if ($this->validate()) {
             $user = new User();
+//            $user->scenario = 'default';
             $user->firstname = $this->firstname;
             $user->lastname = $this->lastname;
             $user->secondname = $this->secondname;
@@ -75,6 +95,26 @@ class SignupForm extends Model
             $user->company_id = $this->company_id;
             $user->status_id = $this->status_id;
             $user->email = $this->email;
+
+            $user->organ_issue = $this->organ_issue;
+            $user->skype = $this->skype;
+            $user->number_id = $this->number_id;
+            $user->date_issue = Yii::$app->formatter->asTimestamp($this->date_issue);
+            $user->date_validity = Yii::$app->formatter->asTimestamp($this->date_validity);
+            $user->iin = $this->iin;
+
+            $user->pass_surname = $this->pass_surname;
+            $user->pass_name = $this->pass_name;
+            $user->pass_state = $this->pass_state;
+            $user->pass_type = $this->pass_type;
+            $user->pass_number = $this->pass_number;
+            $user->pass_national = $this->pass_national;
+            $user->birthday = Yii::$app->formatter->asTimestamp($this->birthday);
+            $user->pass_issue = Yii::$app->formatter->asTimestamp($this->pass_issue);
+            $user->pass_validity = Yii::$app->formatter->asTimestamp($this->pass_validity);
+            $user->pass_authority = $this->pass_authority;
+            $user->pass_id = $this->pass_id;
+
             $user->setPassword($this->password);
             $user->generateAuthKey();
             $user->save();
@@ -106,7 +146,7 @@ class SignupForm extends Model
     {
         return [
             'social' => ['firstname', 'lastname', 'email', 'sex', 'photo', 'birthday', 'activated'],
-            'default' => ['firstname', 'lastname', 'secondname', 'login', 'parent_id', 'company_id', 'status_id', 'email', 'sex', 'photo', 'birthday', 'activated', 'phone', 'password', 'city_id', 'about', 'agreed', 'passwordRepeat'],
+            'default' => ['firstname', 'lastname', 'secondname', 'login', 'parent_id', 'company_id', 'status_id', 'email', 'sex', 'photo', 'birthday', 'activated', 'phone', 'password', 'city_id', 'about', 'agreed', 'passwordRepeat', 'skype'],
         ];
     }
 
