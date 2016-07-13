@@ -222,6 +222,42 @@ class UserController extends \yii\web\Controller
         return $this->redirect(['user/orders']);
     }
 
+    public function actionCabinet()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $passwordModel = new ChangePasswordForm();
+        $profileModel = new Profile();
+
+
+        if ($profileModel->load(Yii::$app->request->post())) {
+            if ($profileModel->changeProfile()) {
+                Yii::$app->getSession()->setFlash('success', 'Данные успешно изменены!');
+                return $this->redirect(['user/index']);
+            }
+            else {
+                Yii::$app->getSession()->setFlash('danger', 'Возникла ошибка!');
+            }
+        }
+
+        $user = User::findOne(['id' => Yii::$app->user->id]);
+        $profileModel->setAttributes($user->attributes);
+
+        $searchModel = new UserFormSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+
+        return $this->render('cabinet', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'user' => $user,
+            'profileModel' => $profileModel,
+            'passwordModel' => $passwordModel,
+        ]);
+    }
+
     protected function findModel($id)
     {
         if (($model = Order::findOne($id)) !== null) {

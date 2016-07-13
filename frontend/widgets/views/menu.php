@@ -12,6 +12,7 @@ use himiklab\thumbnail\EasyThumbnailImage;
 <nav class="menu_container">
     <div class="cr">
         <ul class="menu_top">
+<<<<<<< HEAD
             <li><a href="/">Главное</a></li>
             <li><a href="">Туры </a>
             <!--
@@ -24,12 +25,16 @@ use himiklab\thumbnail\EasyThumbnailImage;
                 </div>
             -->
             </li>
+=======
+            <li><a href="<?= Url::home() ?>">Главная</a></li>
+            <li><a href="">Туры </a></li>
+>>>>>>> 59de4b84a32e4a702b1b901f89135c7ba4f77f97
             <li><a href="">Билеты </a></li>
             <li><a href="">Отели   </a></li>
             <li><a href="">Сотрудничество</a></li>
             <li><a href="">Онлайн табло</a></li>
             <li><a href="">Прогноз </a></li>
-            <li><a href="">О компании</a></li>
+            <li><a href="<?= Url::toRoute(['/article/view', 'slug' => 'o-kompanii']) ?>">О компании</a></li>
         </ul>
     </div>
 </nav>

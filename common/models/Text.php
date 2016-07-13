@@ -30,9 +30,10 @@ class Text extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['key', 'value'], 'required'],
+            [['key'], 'required'],
             [['created', 'updated', 'created_user_id', 'updated_user_id'], 'integer'],
-            [['key'], 'string', 'max' => 255]
+            [['key', 'value'], 'string', 'max' => 255],
+            [['text'], 'string']
         ];
     }
 
@@ -43,6 +44,7 @@ class Text extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'key' => Yii::t('app', 'Key'),
             'value' => Yii::t('app', 'Value'),
+            'text' => Yii::t('app', 'Text'),
             'created' => Yii::t('app', 'Created'),
             'updated' => Yii::t('app', 'Updated'),
             'created_user_id' => Yii::t('app', 'Created User Id'),
@@ -73,6 +75,12 @@ class Text extends \yii\db\ActiveRecord
 
         $text = Text::find()->where(['key' => $key])->one();
         return ($text) ? $text->value : '';
+
+    }
+    public function getText($key) {
+
+        $text = Text::find()->where(['key' => $key])->one();
+        return ($text) ? $text->text : '';
 
     }
 

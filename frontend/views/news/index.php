@@ -14,6 +14,7 @@ $this->registerMetaTag(['name'=> 'description', 'content' => '']);
 
 ?>
 
+<<<<<<< HEAD
 
     <div class="containers">
         <div class="content">
@@ -32,3 +33,7 @@ $this->registerMetaTag(['name'=> 'description', 'content' => '']);
              </div>
         </div>
     </div>
+=======
+<?= $this->render( '_item' )?>
+
+>>>>>>> 59de4b84a32e4a702b1b901f89135c7ba4f77f97

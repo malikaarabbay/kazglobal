@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use vova07\imperavi\Widget;
+use vova07\fileapi\Widget as FileAPI;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Text */
@@ -33,7 +36,20 @@ use yii\widgets\ActiveForm;
 
                         <?= $form->field($model, 'key')->textInput(['maxlength' => true]) ?>
 
-                        <?= $form->field($model, 'value')->textarea() ?>
+                        <?= $form->field($model, 'value')->textInput(['maxlength' => 255]) ?>
+
+                        <?= $form->field($model, 'text')->widget(Widget::className(), [
+                            'settings' => [
+                                'lang' => 'ru',
+                                'minHeight' => 150,
+//                                'imageUpload' => Url::to(['/site/image-upload']),
+//                                'imageManagerJson' => Url::to(['/site/images-get']),
+                                'plugins' => [
+                                    'imagemanager'
+                                ]
+                            ]
+                        ]); ?>
+
 
                     </div>
                 </div>
