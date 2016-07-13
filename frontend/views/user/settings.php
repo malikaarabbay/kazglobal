@@ -40,8 +40,7 @@ $this->title = 'Личный кабинет';
                     <h1>Настройки</h1>
                 </div>
 
-                <?php if($user->status_id == 3) {?>
-                <?php } else { ?>
+
                     <div class="row">
                         <?php $form = ActiveForm::begin(['id' => 'profile-form', 'action' => Url::toRoute('/user/index')]); ?>
                         <div class="col-xs-12 col-md-6">
@@ -149,7 +148,7 @@ $this->title = 'Личный кабинет';
                         <?= Html::submitButton('Сохранить изменения', ['class' => 'button ', 'name' => 'login-button']) ?>
 
                         <?php ActiveForm::end(); ?>
-                        <?php } ?>
+                       
                     </div>
             </div>
         </div>
