@@ -1119,6 +1119,9 @@ select.input_filtr {
 .side_bar_list_item {
     width: 45%;
 }
+.news_list li {
+    width: 50%;
+}
 .enter_form_container {
     width: 100%;
     border-bottom: 2px solid #acacac;
@@ -1139,7 +1142,9 @@ select.input_filtr {
 
 }
 @media screen and (max-width: 460px){
-
+.news_list li {
+    width: 100%;
+}
 .filtr_fio_seocnd ,.filtr_fio_seocnd.structure,.filtr_fio,.input-daterange,.side_bar_list_item{
     width: 100%;
     margin-bottom: 15px;
